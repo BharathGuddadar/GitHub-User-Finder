@@ -3,7 +3,7 @@ import type { RootState } from "../redux/store";
 //import Error from "./Error";
 
 const UserCard = () => {
-  const { profile, loading } = useSelector((state: RootState) => state.user);
+  const { profile} = useSelector((state: RootState) => state.user);
 
   // if (loading) {
   //   return (
