@@ -5,12 +5,14 @@ interface UserState {
   loading: boolean;
   error: string | null;
   profile: any;
+  username: string; // 🔥 Added to store searched username
 }
 
 const initialState: UserState = {
   loading: false,
   error: null,
   profile: null,
+  username: "", // 🔥 initialize
 };
 
 export const fetchUser = createAsyncThunk(
@@ -18,7 +20,7 @@ export const fetchUser = createAsyncThunk(
   async (username: string, { rejectWithValue }) => {
     try {
       const data = await fetchUserProfile(username);
-      return data;
+      return { profile: data, username }; // 👈 include username in payload
     } catch (err: any) {
       return rejectWithValue(err.response?.status || "Unknown error");
     }
@@ -32,6 +34,7 @@ const userSlice = createSlice({
     clearUser(state) {
       state.profile = null;
       state.error = null;
+      state.username = ""; // 🔥 reset username too
     },
   },
   extraReducers: (builder) => {
@@ -42,7 +45,8 @@ const userSlice = createSlice({
       })
       .addCase(fetchUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.profile = action.payload;
+        state.profile = action.payload.profile;
+        state.username = action.payload.username; // ✅ save username
       })
       .addCase(fetchUser.rejected, (state, action) => {
         state.loading = false;

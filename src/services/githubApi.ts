@@ -8,13 +8,13 @@ const githubApi = axios.create({
   timeout: 10000,
 });
 
-// ✅ 1. Fetch user profile
+// 1. Fetch user profile
 export const fetchUserProfile = async (username: string) => {
   const response = await githubApi.get(`/users/${username}`);
   return response.data;
 };
 
-// ✅ 2. Fetch user repos with pagination
+//  2. Fetch user repos with pagination
 export const fetchUserRepos = async (
   username: string,
   page = 1,
@@ -30,7 +30,7 @@ export const fetchUserRepos = async (
   return response.data;
 };
 
-// ✅ 3. NEW: Search users (autocomplete)
+//  3. NEW: Search users (autocomplete)
 export const searchUsers = async (query: string, page = 1, perPage = 10) => {
   const response = await githubApi.get(`/search/users`, {
     params: {
