@@ -40,18 +40,14 @@ const username = usernameFromStore || profileUsername;
     [loading, hasMore, dispatch]
   );
 
-  /* ──────────────────────────────────────────
-     Fetch when username or page changes
-  ────────────────────────────────────────── */
+  /* Fetch when username or page changes */
   useEffect(() => {
     if (username) {
       dispatch(fetchRepos({ username, page }));
     }
   }, [dispatch, username, page]);
 
-  /* ──────────────────────────────────────────
-     Early returns
-  ────────────────────────────────────────── */
+  /* Early returns*/
   if (loading && page === 1) return <Loader />;
   if (error) return <Error />;
 
@@ -85,9 +81,7 @@ const username = usernameFromStore || profileUsername;
     );
   }
 
-  /* ──────────────────────────────────────────
-     Helpers (unchanged)
-  ────────────────────────────────────────── */
+  /*  Helpers (unchanged) */
   const languageColors: Record<string, string> = {
     JavaScript: "bg-yellow-100 text-yellow-800 border-yellow-200",
     TypeScript: "bg-blue-100 text-blue-800 border-blue-200",
@@ -111,9 +105,7 @@ const username = usernameFromStore || profileUsername;
     return num.toString();
   };
 
-  /* ──────────────────────────────────────────
-     Render (original markup retained)
-  ────────────────────────────────────────── */
+  /*  Render (original markup retained)*/
   return (
     <div className="mt-8 max-w-4xl mx-auto px-4">
       <div className="bg-white rounded-xl shadow-lg overflow-hidden">
@@ -135,7 +127,7 @@ const username = usernameFromStore || profileUsername;
 
                 >
                   {/* ─── your existing repo card markup ─── */}
-                  <div className="flex items-start justify-between">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center space-x-3 mb-3">
                         <svg

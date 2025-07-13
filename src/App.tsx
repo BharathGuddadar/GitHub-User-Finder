@@ -9,7 +9,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 3000); // 4 seconds animation
+    }, 3000); // 3 seconds animation
 
     return () => clearTimeout(timer);
   }, []);

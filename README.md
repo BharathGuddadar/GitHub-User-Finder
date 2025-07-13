@@ -1,69 +1,154 @@
-# React + TypeScript + Vite
+# 🔎 GitHub User Finder App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive web application to search GitHub users and view their public repositories. Built with React, Redux Toolkit, TypeScript, and Tailwind CSS. Includes features like infinite scroll, API error handling, and performance optimizations.
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🔗 [Github-User-Finder](https://github-user-finder-lovat-five.vercel.app/)
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- ✅ GitHub user profile search
+- ✅ Paginated repositories with infinite scroll
+- ✅ API error & loading states
+- ✅ Responsive design (mobile-first)
+- ✅ TypeScript with strict types
+- ✅ Light bundle with Vite
+- ✅ Clean folder structure
+- ✅ Utility functions for number formatting
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠 Built With
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- ⚛️ React + TypeScript
+- 🛠 Redux Toolkit
+- 🎨 Tailwind CSS
+- ⚡ Vite
+- 🧪 Vitest + React Testing Library
+- 📦 GitHub REST API
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📦 Project Setup
+
+Follow these steps to run the project locally:
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/bharathps821/github-user-finder.git
+cd github-user-finder
+
+# 2. Install dependencies
+npm install     # or pnpm install
+
+# 3. Start development server
+npm run dev     # or pnpm dev
+
+# 4. Visit
+http://localhost:5173
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📁 Project Structure & Architecture
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+src/
+│
+├── components/           # Reusable UI components (SearchBar, RepoList, Loader, Error)
+├── redux/                # Redux Toolkit setup
+│   ├── slices/           # State slices for user and repos
+│   └── store.ts          # Redux store configuration
+│
+├── services/             # API functions for GitHub (fetchUserProfile, fetchRepos)
+├── App.tsx               # Main App with routing/layout
+└── main.tsx              # App entry point
+```
+
+## 🔧 State Management
+
+- **userSlice**: Fetches and stores user profile data
+- **repoSlice**: Handles paginated repo fetch, infinite scroll, and error/loading states
+
+## 🧠 Key Architectural Decisions
+
+- Redux Toolkit + Async Thunks for clean async logic
+- IntersectionObserver for infinite scrolling
+- Debounced Search (planned) for rate limit efficiency
+- Tailwind CSS for fast responsive UI
+
+## 🧪 Testing
+
+- Redux slice tests using vitest
+- Manual testing for all flows (valid, invalid, empty, edge)
+
+## 📈 Planned Improvements
+
+- [ ] Debounced search bar with suggestions
+- [ ] Unit & integration tests with mock data
+- [ ] OAuth integration for rate-limit bypass
+- [ ] Skeleton loaders
+- [ ] Custom 404 page
+- [ ] Optional dark mode support (auto-detect)
+
+## 🚀 Available Scripts
+
+```bash
+# Development
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run preview      # Preview production build
+
+# Testing
+npm run test         # Run tests
+npm run test:ui      # Run tests with UI
+
+# Linting
+npm run lint         # Run ESLint
+```
+
+## 📊 Performance Optimizations
+
+- Infinite scroll with IntersectionObserver
+- Memoized components and callbacks
+- Lazy loading of repository data
+- Optimized bundle size with Vite
+
+## 🌐 API Integration
+
+This app uses the GitHub REST API:
+- User profile: `GET /users/{username}`
+- User repositories: `GET /users/{username}/repos`
+
+Rate limits apply for unauthenticated requests (60 requests/hour).
+
+## 🎨 UI/UX Features
+
+- Clean, modern design with Tailwind CSS
+- Responsive layout for all device sizes
+- Smooth animations and transitions
+- Loading states and error handling
+- Language-specific color coding for repositories
+
+## 📱 Browser Support
+
+- Modern browsers (Chrome, Firefox, Safari, Edge)
+- Mobile responsive design
+- ES6+ features support
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💻 Author
+
+**Bharath G P**
+- GitHub: [BharathGuddadar](https://github.com/bharathguddadar)
+- Portfolio: [Portfolio](https://portfolio-6oi9-bharath-g-ps-projects.vercel.app/)
+
+---
+
+Made with 💙 by Bharath G P
